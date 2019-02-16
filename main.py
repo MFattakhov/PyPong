@@ -16,7 +16,6 @@ horizontal_border_bottom = pygame.sprite.Group()
 horizontal_border_top = pygame.sprite.Group()
 vertical_borders = pygame.sprite.Group()
 ball_sprite = pygame.sprite.Group()
-platform_sprite = pygame.sprite.Group()
 platform_sprite_bottom = pygame.sprite.Group()
 platform_sprite_top = pygame.sprite.Group()
 
@@ -27,9 +26,8 @@ Border(5, 5, 5, height - 5, all_sprites, vertical_borders)
 Border(width - 5, 5, width - 5, height - 5, all_sprites,
        vertical_borders)
 
-Ball(20, 100, 100, all_sprites, ball_sprite)
-Platform(115, height - 10, width / 4, 3, platform_sprite, platform_sprite_bottom)
-Platform(115, 10, width / 4, 3, platform_sprite, platform_sprite_top)
+Ball(20, 100, 100, all_sprites, ball_sprite,
+     platform_sprite_bottom, platform_sprite_top)
 
 run = False
 while not run:
@@ -55,8 +53,8 @@ while run:
             run = False
 
     draw_window(win, width, ball_sprite, horizontal_border_bottom, horizontal_border_top,
-				vertical_borders, victory, clock, fps, platform_sprite, 
-				platform_sprite_bottom, platform_sprite_top, all_sprites)
+                vertical_borders, victory, clock, fps,
+                platform_sprite_bottom, platform_sprite_top, all_sprites)
 
 pygame.quit()
 sys.exit()

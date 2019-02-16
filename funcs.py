@@ -3,17 +3,18 @@ import sys
 
 
 def draw_window(win, width, ball_sprite, horizontal_border_bottom, horizontal_border_top,
-                vertical_borders, victory, clock, fps, platform_sprite,
+                vertical_borders, victory, clock, fps,
                 platform_sprite_bottom, platform_sprite_top, *sprites):
     win.fill(pygame.Color('white'))
     for sprite in sprites:
         sprite.draw(win)
         sprite.update()
     ball_sprite.draw(win)
-    ball_sprite.update(width, platform_sprite, horizontal_border_bottom, horizontal_border_top,
-                       vertical_borders, victory, win)
+    ball_sprite.update(width, horizontal_border_bottom, horizontal_border_top,
+                       vertical_borders, victory, win, platform_sprite_bottom, platform_sprite_top)
     keys = pygame.key.get_pressed()
-    platform_sprite.draw(win)
+    platform_sprite_bottom.draw(win)
+    platform_sprite_top.draw(win)
     if keys[pygame.K_LEFT]:
         platform_sprite_bottom.update(-1)
     if keys[pygame.K_RIGHT]:
