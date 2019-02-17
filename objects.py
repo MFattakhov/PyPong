@@ -21,8 +21,6 @@ class Ball(pygame.sprite.Sprite):
 
     def __init__(self, radius, x, y, all_sprites, ball_sprite,
                  platform_sprite_bottom, platform_sprite_top):
-        # super().__init__(all_sprites)
-        # self.add(ball_sprite)
         super().__init__(ball_sprite)
         self.radius = radius
         self.cnt = 1 / 3
@@ -34,6 +32,7 @@ class Ball(pygame.sprite.Sprite):
         self.rect = pygame.Rect(x, y, 2 * radius, 2 * radius)
         self.vx = 0
         self.vy = 1
+        self.restart = False
         self.speed = 4
         self.k = False
         self.bot_platform = Platform(
@@ -51,9 +50,11 @@ class Ball(pygame.sprite.Sprite):
         if pygame.sprite.spritecollideany(self, horizontal_border_bottom):
             self.move = False
             victory(win, 'Top', width)
+            self.restart = True
         if pygame.sprite.spritecollideany(self, horizontal_border_top):
             self.move = False
             victory(win, 'Bottom', width)
+            self.restart = True
         if pygame.sprite.spritecollideany(self, platform_sprite_top):
             self.speed += self.cnt
             self.vx = (((self.rect.x + 20) - (self.top_platform.rect.x + 61.5)) / 61.5) * 0.8

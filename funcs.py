@@ -1,11 +1,12 @@
 import pygame
 import sys
+import random
 
 
-def draw_window(win, width, ball_sprite, horizontal_border_bottom, horizontal_border_top,
+def draw_window(win, background, width, ball_sprite, horizontal_border_bottom, horizontal_border_top,
                 vertical_borders, victory, clock, fps,
                 platform_sprite_bottom, platform_sprite_top, *sprites):
-    win.fill(pygame.Color('white'))
+    win.blit(background, (0, 0))
     for sprite in sprites:
         sprite.draw(win)
         sprite.update()
