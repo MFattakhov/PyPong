@@ -25,10 +25,9 @@ class Ball(pygame.sprite.Sprite):
         self.radius = radius
         self.cnt = 1 / 3
         self.move = True
-        self.image = pygame.Surface(
-            (2 * radius, 2 * radius), pygame.SRCALPHA, 32)
-        pygame.draw.circle(self.image, pygame.Color(
-            "red"), (radius, radius), radius)
+        self.animation_count = 1
+        self.sprites = [pygame.image.load(f'images/ball/Ball_{i}.png') for i in range(1, 17)]
+        self.image = self.sprites[0]
         self.rect = pygame.Rect(x, y, 2 * radius, 2 * radius)
         self.vx = 0
         self.vy = 1
@@ -42,6 +41,12 @@ class Ball(pygame.sprite.Sprite):
 
     def update(self, width, horizontal_border_bottom, horizontal_border_top,
                vertical_borders, victory, win, platform_sprite_bottom, platform_sprite_top):
+
+        self.image = self.sprites[self.animation_count % 16]
+        self.animation_count += 1
+        if self.animation_count > 10 ** 6:
+            self.animation_count = self.animation_count % 16
+
         if self.move:
             self.rect = self.rect.move(
                 self.vx * self.speed, self.vy * self.speed)
@@ -57,11 +62,13 @@ class Ball(pygame.sprite.Sprite):
             self.restart = True
         if pygame.sprite.spritecollideany(self, platform_sprite_top):
             self.speed += self.cnt
-            self.vx = (((self.rect.x + 20) - (self.top_platform.rect.x + 61.5)) / 61.5) * 0.7
+            self.vx = (
+                ((self.rect.x + 20) - (self.top_platform.rect.x + 61.5)) / 61.5) * 0.7
             self.vy = sqrt(1 - (self.vx ** 2))
         if pygame.sprite.spritecollideany(self, platform_sprite_bottom):
             self.speed += self.cnt
-            self.vx = (((self.rect.x + 20) - (self.bot_platform.rect.x + 61.5)) / 61.5) * 0.7
+            self.vx = (
+                ((self.rect.x + 20) - (self.bot_platform.rect.x + 61.5)) / 61.5) * 0.7
             self.vy = -sqrt(1 - (self.vx ** 2))
 
 

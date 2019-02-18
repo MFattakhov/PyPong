@@ -58,12 +58,12 @@ def game():
             if event.type == pygame.QUIT:
                 run = False
 
-        draw_window(win, bg, width, ball_sprite, horizontal_border_bottom, horizontal_border_top,
-                    vertical_borders, victory, clock, fps,
+        draw_window(win, bg, width, ball_sprite, horizontal_border_bottom,
+                    horizontal_border_top, vertical_borders, victory, clock, fps,
                     platform_sprite_bottom, platform_sprite_top, all_sprites)
 
         if ball.restart == True:
-        	return 0
+            return 0
 
 
 if __name__ == "__main__":
