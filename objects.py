@@ -57,11 +57,11 @@ class Ball(pygame.sprite.Sprite):
             self.restart = True
         if pygame.sprite.spritecollideany(self, platform_sprite_top):
             self.speed += self.cnt
-            self.vx = (((self.rect.x + 20) - (self.top_platform.rect.x + 61.5)) / 61.5) * 0.8
+            self.vx = (((self.rect.x + 20) - (self.top_platform.rect.x + 61.5)) / 61.5) * 0.7
             self.vy = sqrt(1 - (self.vx ** 2))
         if pygame.sprite.spritecollideany(self, platform_sprite_bottom):
             self.speed += self.cnt
-            self.vx = (((self.rect.x + 20) - (self.bot_platform.rect.x + 61.5)) / 61.5) * 0.8
+            self.vx = (((self.rect.x + 20) - (self.bot_platform.rect.x + 61.5)) / 61.5) * 0.7
             self.vy = -sqrt(1 - (self.vx ** 2))
 
 
